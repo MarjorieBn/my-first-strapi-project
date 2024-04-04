@@ -1,0 +1,187 @@
+/* ---------------------------------------------- FONTS */
+@font-face {
+	font-family: 'adelpheG';
+	src: url(font/Adelphe-FlorealRegular.woff);
+}
+
+@font-face {
+	font-family: 'code';
+	src: url(font/OfficeCodePro-Light.otf);
+}
+
+/*---------------------------------------------- STRUCTURE GÉNÉRALE */
+* { 
+	margin: 0; 
+	padding: 0;
+	transition: .2s;
+}
+html{
+	font-size: 12.5pt;
+	line-height: 1.2;
+	--white: #fff;
+	--bg-color: #D1D2F9;
+	--bg-color-bis: #FDFFFC;
+    --color: #000;
+    --secondary-color: #462255;
+}
+/* #C8FFBE #EDFFAB */
+body{
+	display: flex;
+	max-width: 100vw;
+	max-height: 100vh;
+	font-family: 'adelpheG', serif;
+	font-size: 1rem;
+	background-color: var(--bg-color-bis);
+	color: var(--color);
+	overflow: hidden;
+}
+/*----------------------- PAGES PROJETS */
+.slide{
+    display: none;
+    position: absolute;
+    right: 0;
+    max-width: 70vw;
+    height: 95vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
+    background-color: var(--bg-color-bis);
+	padding: 1em;
+}
+.slide:first-child,
+.slide:target {
+  display: block;
+}
+/*----------------------- BALISES GÉNÉRIQUES */
+h1{
+	font-weight: normal;
+	font-size: 1.8rem;
+}
+p, hr{
+	font-family: 'code';
+	max-width: 60ch;
+}
+a{
+	text-decoration: none;
+	color: var(--secondary-color);
+	background-color: var(--bg-color);
+	padding: .2em .5em;
+	
+}
+a:hover{
+	background-color: var(--secondary-color);
+	color: var(--bg-color);
+	border-radius: 50px;	
+}
+.logo img:hover{
+	/* border-radius: 50px;
+	border: 2px solid; */
+	transform: scale(.8);
+}
+.slide a{
+	border: 2px solid var(--secondary-color);
+	border-radius: 50px;
+}
+img:not(.logo img), video{
+	width: 100%;
+	height: auto;
+	background-color: var(--bg-color-bis);
+}
+
+/*---------------------------------------------- MENU */
+#menu{
+	width: 25vw;
+	max-height: 100vh;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-color: var(--bg-color);
+	padding: 1em;
+}
+/*---------------------- LOGO */
+.logo{
+	display: block;
+	max-width: 6em;
+}
+.logo img{
+	width: 100%;
+}
+/*----------------------- NAVIGATION */
+nav{
+	width: 100%;
+}
+hr{
+	margin: .2em 0em;
+	color: var(--color);
+}
+#hand{
+	display: none;
+}
+/*---------------------------------------------- PAGES PROJETS */
+/*----------------------- GRILLE D'IMAGES */
+.grid{
+	display: grid;
+	grid-template-columns: repeat(4,1fr);
+	gap: .5em;
+	max-width: 95%;
+	grid-auto-flow: row;
+	align-items: start;
+}
+.grid>*:nth-child(3n){
+	grid-row: span 2;
+	grid-column: span 2;
+}
+.grid>*:nth-child(2n){
+	grid-row: span 3;
+	grid-column: span 3;
+}
+
+/*---------------------------------------------- RESPONSIVE */
+@media screen and (max-width:900px) {
+	/*----------------------- GÉNÉRAL */
+	.slide{
+		max-width: 100vw;
+		left: 0;
+	}
+	/*----------------------- BOUTON + MENU */
+	#hand{
+		display: block;		
+		position: absolute;
+		top: 1em;
+		right: 1em;
+		z-index: 100;
+		padding: .2em .5em;
+		transform: scaleX(-1);
+		color: var(--secondary-color);
+		border: 2px solid var(--secondary-color);
+		border-radius: 50px;
+	}
+	#hand:hover{
+		background-color: var(--secondary-color);
+		color: var(--white);
+		cursor: pointer;
+	}
+	#menu{
+		transform: translate(-100%);
+		width: 100vw;
+		z-index: 10;
+	}
+	/*----------------------- EFFET HAMBURGER MENU */
+	#hand.button{
+		transform: scaleX(1);
+	}
+	#menu.box{
+		transform: translate(0%);
+	}
+	/*----------------------- GRILLE D'IMAGES */
+	.grid{
+		grid-template-columns: repeat(1,1fr);
+		margin: 0 auto;
+	}
+	.grid>*:nth-child(3n){
+		grid-row: span 1;
+		grid-column: span 1;
+	}
+	.grid>*:nth-child(2n){
+		grid-row: span 1;
+		grid-column: span 1;
+	}
+}
